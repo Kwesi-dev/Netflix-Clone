@@ -6,6 +6,7 @@ const userRouter = require('./routes/users');
 const movieRouter = require('./routes/movies');
 const listRouter = require('./routes/lists')
 const app = express();
+const path = require('path')
 dotenv.config();
 
 app.use(express.json());
@@ -24,7 +25,12 @@ app.use('/api/users', userRouter);
 app.use('/api/movies', movieRouter);
 app.use('/api/lists', listRouter);
 
+app.use(express.static(path.join(__dirname, '/front-end/build')));
+
+app.get('*', (req, res)=>{
+    res.sendFile(path.join(__dirname, '/front-end/build', 'index.html'));
+});
 //port number
-app.listen(5000, ()=>{
+app.listen(process.env.PORT || 5000, ()=>{
     console.log("backend server is running")
 });
