@@ -7,7 +7,7 @@ import './list.scss'
 const List = ({ list }) => {
     const [slideNumber, setSlideNumber] = useState(0)
     const [isMoved, setIsMoved] = useState(false)
-    const [clickLimit, setClickLimit] = useState(window.innerWidth / 230);
+    const clickLimit = window.innerWidth / 230
 
     const listRef = useRef()
     const handleClick = (direction) => {

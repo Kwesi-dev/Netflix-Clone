@@ -1,37 +1,33 @@
 import './register.scss'
 import { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { axiosInstance } from '../../config'
+import axios from 'axios'
 import { useHistory } from 'react-router-dom'
 const Register = () => {
-    const [user, setUser] = useState("")
     const [email, setEmail] = useState("")
-    const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
+    const [username, setUsername] = useState("")
+
     const emailRef = useRef()
-    const passRef = useRef()
     const history = useHistory()
 
     const handleStart = ()=>{
         setEmail(emailRef.current.value)
-        setUsername(emailRef.current.value)
     }
 
     const handleFinish = async (e)=>{
         e.preventDefault()
-        setPassword(passRef.current.value)
         const newUser={
-            username,
             email,
+            username,
             password,
         }
         try{
-            const res = await axiosInstance.post('/auth/register', newUser)
-            setUser(res.data)
+            await axios.post('/auth/register', newUser)
             history.push('/login')
-        }catch{}
+        }catch{} 
     }
-
+    console.log(username, email, password)
     return (
         <div className="register">
             <div className="top">
@@ -56,7 +52,8 @@ const Register = () => {
                     </div>
                 ) : (
                     <form className="input">
-                        <input type="password" placeholder="password" ref={passRef}/>
+                        <input type="text" placeholder="username" onChange={e=>setUsername(e.target.value)}/>
+                        <input type="password" placeholder="password" onChange={e=>setPassword(e.target.value)}/>
                         <button className="registerButton" onClick={handleFinish}>Start</button>
                     </form>
                 )}

@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index",
-    "heroku-postbuild": "cd front-end && npm install && npm run build"
+    "start": "nodemon index"
   },
   "author": "",
   "license": "ISC",
@@ -20,8 +19,8 @@
     "mongoose": "^6.0.2",
     "nodemon": "^2.0.12"
   },
-  "engines":{
+  "engines": {
     "node": "14.x",
-    "npm" : "7.x"
+    "npm": "7.x"
   }
 }

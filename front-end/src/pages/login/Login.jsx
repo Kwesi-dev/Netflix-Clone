@@ -3,7 +3,7 @@ import { useRef, useContext } from 'react'
 import { userLogin } from '../../context/authContext/apiCalls'
 import { AuthContext } from '../../context/authContext/authContext'
 import { Link } from 'react-router-dom'
-const Register = () => {
+const Login = () => {
     const emailRef = useRef()
     const passRef = useRef()
 
@@ -41,4 +41,4 @@ const Register = () => {
     )
 }
 
-export default Register
+export default Login
